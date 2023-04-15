@@ -33,6 +33,8 @@ def CheckWindowsIsMinimised():
 
 def BoucleSeenEnseignement():
     StopBoucle = 0
+    global CountAccept
+    global CountDelete
     while StopBoucle < 4:
         PosEnseignement = imagesearch("Screenshots/SeenEnseignement.png")
         if PosEnseignement[0] != -1:
@@ -46,20 +48,22 @@ def BoucleSeenEnseignement():
                 pyautogui.moveTo(PosAccepter[0], PosAccepter[1])
                 pyautogui.click(button="left")
                 CountAccept += 1
-            elif PosSupprimer[0] != -1:
+            if PosSupprimer[0] != -1:
                 pyautogui.moveTo(PosSupprimer[0]+25, PosSupprimer[1]+10)
                 pyautogui.click(button="left")
                 CountDelete += 1
             else:
                 print("not find Accepter et Supprimer")
         else:
-            #print("Not found Enseignement ")
+            # print("Not found Enseignement ")
             pyautogui.moveTo(530, 300)
             pyautogui.scroll(-400)
             StopBoucle += 1
 
 
 def BoucleNewEnseignement():
+    global CountAccept
+    global CountDelete
     StopBoucle = 0
     while StopBoucle < 4:
         PosEnseignement = imagesearch("Screenshots/NewEnseignement.png")
@@ -81,7 +85,7 @@ def BoucleNewEnseignement():
             else:
                 print("not find Accepter et Supprimer")
         else:
-            #print("Not found Enseignement ")
+            # print("Not found Enseignement ")
             pyautogui.moveTo(530, 300)
             pyautogui.scroll(-400)
             StopBoucle += 1
@@ -90,14 +94,14 @@ def BoucleNewEnseignement():
 # Open Microsoft courrier
 pos = imagesearch("Screenshots/CourrierImage.png")
 if pos[0] != -1:
-    #print("position : ", pos[0], pos[1])
+    # print("position : ", pos[0], pos[1])
     pyautogui.moveTo(pos[0]+25, pos[1]+20)
     pyautogui.click(button="left")
 else:
     print("Image courrier not found")
     messagebox.showinfo("Error", "Courrier not Found")
 
-time.sleep(2)  # let the app open
+time.sleep(1.5)  # let the app open
 CheckWindowsIsMinimised()
 BoucleNewEnseignement()
 pyautogui.moveTo(530, 300)
@@ -106,10 +110,5 @@ time.sleep(1)
 BoucleSeenEnseignement()
 pyautogui.moveTo(530, 300)
 pyautogui.scroll(1700)
-FinalMessage1 = "Accepted ", CountAccept, " Mail and deleted ", CountDelete, " mails"
-FinalMessage2 = 'Accepted {CountAccept} Mail and deleted {CountDelete} mails'
-print(
-    "Accepted", CountAccept, "Mail and deleted", CountDelete, " mails")
-print(f'Accepted {CountAccept} Mail and deleted {CountDelete} mails')
-messagebox.showinfo("Finish", FinalMessage1)
+FinalMessage2 = f'Accepted {CountAccept} Mail and deleted {CountDelete} mails'
 messagebox.showinfo("Finish", FinalMessage2)
