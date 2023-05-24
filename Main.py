@@ -110,5 +110,9 @@ time.sleep(1)
 BoucleSeenEnseignement()
 pyautogui.moveTo(530, 300)
 pyautogui.scroll(1700)
+# Fermer Courrier
+pyautogui.moveTo(1900, 20)
+pyautogui.click(button="left")
+# Afficher les mails acceptés et supprimés
 FinalMessage2 = f'Accepted {CountAccept} Mail and deleted {CountDelete} mails'
 messagebox.showinfo("Finish", FinalMessage2)
