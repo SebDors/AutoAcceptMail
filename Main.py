@@ -114,5 +114,6 @@ pyautogui.scroll(1700)
 pyautogui.moveTo(1900, 20)
 pyautogui.click(button="left")
 # Afficher les mails acceptés et supprimés
+pyautogui.moveTo(1100, 700)
 FinalMessage2 = f'Accepted {CountAccept} Mail and deleted {CountDelete} mails'
 messagebox.showinfo("Finish", FinalMessage2)
